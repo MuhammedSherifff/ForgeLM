@@ -29,7 +29,7 @@ train examples of Smol-SmolTalk (test split kept full).
 
 | Checkpoint | Val loss | Val ppl | HellaSwag | ARC-Easy |
 |---|---|---|---|---|
-| `pretrain_base`  | 15.3009 | 2.244963 | 0.276 | 0.462 |
+| `pretrain_base`  | 2.244963 | 15.3009 | 0.276 | 0.462 |
 
 
 Losses come from `eval/evaluate_loss.py`; benchmark scores from
