@@ -29,8 +29,8 @@ train examples of Smol-SmolTalk (test split kept full).
 
 | Checkpoint | Val loss | Val ppl | HellaSwag | ARC-Easy |
 |---|---|---|---|---|
-| `pretrain_base` final | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-| `sft` best | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
+| `pretrain_base`  | 15.3009 | 2.244963 | 0.276 | 0.462 |
+
 
 Losses come from `eval/evaluate_loss.py`; benchmark scores from
 `eval/evaluate_official.py` (lm-evaluation-harness, 0-shot).
