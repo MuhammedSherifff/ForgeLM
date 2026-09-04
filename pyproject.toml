@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forgelm"
+version = "0.1.0"
+description = "Educational from-scratch LLaMA-style language model"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML",
+    "transformers",
+    "numpy",
+    "torch",
+    "datasets",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+data = [
+    "boto3",
+]
+evaluation = [
+    "lm-eval[hf]==0.4.8",
+]
+
+[tool.setuptools]
+py-modules = ["config", "utils"]
+
+[tool.setuptools.packages.find]
+include = ["model*", "scripts*", "tokenizer*", "data_pipeline*", "eval*", "training*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

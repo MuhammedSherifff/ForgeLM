@@ -1,0 +1,43 @@
+# ForgeLM supervised fine-tuning configuration.
+# Point `training.checkpoint` at a pretrained checkpoint, then run:
+#     python -m scripts.sft --config configs/sft.yml
+# Repro: train artifacts capped at 200k via
+# `--max-examples 200000`; test split kept full.
+model:
+  vocab_size: null
+  block_size: 2048
+  n_layer: 30
+  n_embd: 576
+  n_head: 9
+  n_head_kv: 3
+  intermediate_size: 1536
+  rope_theta: 10000.0
+  rms_norm_eps: 1.0e-5
+  attention_bias: false
+  tie_embeddings: true
+  use_sdpa: true
+
+tokenizer:
+  name: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
+  revision: main
+  local_files_only: false
+
+data:
+  train_dir: ./data/sft/train
+  validation_dir: ./data/sft/test
+
+training:
+  checkpoint: ./checkpoints/pretrain_base/step_006800.pt
+  output_dir: ./checkpoints/sft
+  batch_size: 1
+  learning_rate: 3.0e-5
+  weight_decay: 0.01
+  num_epochs: 1
+  # Warmup runs once over optimizer steps, then the rate stays constant.
+  warmup_steps: 500
+  max_grad_norm: 1.0
+  log_interval: 100
+  eval_interval: 10000
+  checkpoint_interval: 10000
+  mixed_precision: true
+  seed: 42

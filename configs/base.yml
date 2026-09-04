@@ -1,0 +1,43 @@
+model:
+  vocab_size: null
+  block_size: 2048
+  n_layer: 30
+  n_embd: 576
+  n_head: 9
+  n_head_kv: 3
+  intermediate_size: 1536
+  rope_theta: 10000.0
+  rms_norm_eps: 1.0e-5
+  attention_bias: false
+  tie_embeddings: true
+  use_sdpa: true
+
+tokenizer:
+  name: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
+  revision: main
+  local_files_only: false
+
+training:
+  batch_size: 1
+  learning_rate: 3.0e-4
+  weight_decay: 0.1
+  # Reference budget (~3B at batch1x2048). 1.7B repro stops at step_006800.pt.
+  max_steps: 1464844
+  warmup_steps: 10000
+  min_learning_rate: 3.0e-5
+  max_grad_norm: 1.0
+  log_interval: 100
+  eval_interval: 5000
+  checkpoint_interval: 10000
+  checkpoint_dir: checkpoints/pretrain_base
+  mixed_precision: true
+  seed: 42
+
+data:
+  root: data/splits
+  train_split: train
+  validation_split: val
+  source_weights:
+    fineweb-edu-dedup: 0.75
+    cosmopedia-v2: 0.15
+    python-edu: 0.10

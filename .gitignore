@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.env
+
+checkpoints/
+/data/
+tokenizer_cache/
+/wandb/
+
+*.pt
+*.pth
+*.safetensors
+*.bin
+wandb/
+
+# Local-only full-history backup (never push).
+/history/
